@@ -1,0 +1,124 @@
+{
+  "project_info": {
+    "project_number": "290559371503",
+    "project_id": "ecommmers-8a4dd",
+    "storage_bucket": "ecommmers-8a4dd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290559371503:android:3e11e840a524f9e24f931a",
+        "android_client_info": {
+          "package_name": "com.company.blackcart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOD2WImlKh5eMKoG-qmzyQMCJ8By5lHoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290559371503:android:967d01d7162218184f931a",
+        "android_client_info": {
+          "package_name": "com.company.fresh"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOD2WImlKh5eMKoG-qmzyQMCJ8By5lHoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290559371503:android:de18b6e5bd03a8084f931a",
+        "android_client_info": {
+          "package_name": "com.company.login"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOD2WImlKh5eMKoG-qmzyQMCJ8By5lHoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290559371503:android:ebe5785b7085b9d14f931a",
+        "android_client_info": {
+          "package_name": "com.company.music"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOD2WImlKh5eMKoG-qmzyQMCJ8By5lHoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290559371503:android:5f5b2bc6c759dad64f931a",
+        "android_client_info": {
+          "package_name": "com.company.panda"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOD2WImlKh5eMKoG-qmzyQMCJ8By5lHoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290559371503:android:bc49c1d1ebac46484f931a",
+        "android_client_info": {
+          "package_name": "com.example.card"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOD2WImlKh5eMKoG-qmzyQMCJ8By5lHoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
