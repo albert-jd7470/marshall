@@ -65,18 +65,25 @@ class AlbumElement {
   factory AlbumElement.fromJson(Map<String, dynamic> json) {
     return AlbumElement(
       id: json['id'] ?? '',
-      name: json['name'] ?? '',
+
+      // 🔥 FIXED — Accepts name, title, or song
+      name: json['name'] ?? json['title'] ?? json['song'] ?? 'Unknown',
+
       url: json['url'] ?? '',
       language: json['language'] ?? '',
+
       primaryArtists: (json['primaryArtists'] as List? ?? [])
           .map((e) => Artist.fromJson(e))
           .toList(),
+
       image: (json['image'] as List? ?? [])
           .map((e) => ImageElement.fromJson(e))
           .toList(),
     );
   }
 }
+
+
 
 class Artist {
   final String id;

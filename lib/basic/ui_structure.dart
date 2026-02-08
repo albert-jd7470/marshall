@@ -8,6 +8,9 @@ class UiStructure extends StatefulWidget {
 }
 
 class _UiStructureState extends State<UiStructure> {
+  //----------colors
+   Color neonBlue = Color(0xFF00E5FF);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

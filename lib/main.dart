@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:marshall/screens/bottomnavigations.dart';
+import 'package:marshall/widgets/bottomnavigations.dart';
 import 'package:marshall/screens/splashscreen.dart';
 
 void main() async {
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Bottomnavigations(),
+      home: Splashscreen(),
     );
   }
 }

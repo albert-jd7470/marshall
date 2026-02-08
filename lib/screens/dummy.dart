@@ -2,7 +2,7 @@
 //---------------
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
-import 'package:marshall/screens/bottomnavigations.dart';
+import 'package:marshall/widgets/bottomnavigations.dart';
 import '../models/search_models.dart';
 import 'package:audioplayers/audioplayers.dart';
 

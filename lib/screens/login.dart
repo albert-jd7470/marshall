@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:marshall/screens/sign_ui.dart';
-import 'bottomnavigations.dart';
+import '../widgets/bottomnavigations.dart';
 class LoginUi extends StatefulWidget {
   const LoginUi({super.key});
   @override
@@ -21,7 +21,7 @@ class _LoginUiState extends State<LoginUi> {
           content: Text("Please fill all fields!",style: TextStyle(
             fontFamily: "dot"
           ),),
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.deepPurple,
         ),
       );
       return;
@@ -62,7 +62,7 @@ class _LoginUiState extends State<LoginUi> {
           content: Text(message,style: TextStyle(
               fontFamily: "dot"
           ),),
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.deepPurple,
           duration: const Duration(seconds: 2),
         ),
       );
@@ -73,8 +73,12 @@ class _LoginUiState extends State<LoginUi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
+        extendBodyBehindAppBar: true,
+
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
         leading: IconButton(
           onPressed: () {
             Navigator.pushReplacement(
@@ -82,113 +86,120 @@ class _LoginUiState extends State<LoginUi> {
               MaterialPageRoute(builder: (context) => SignUi()),
             );
           },
-          icon: Icon(Icons.arrow_back_ios, color: Colors.green),
+          icon: Icon(Icons.arrow_back_ios, color: Colors.deepPurpleAccent),
         ),
       ),
-      backgroundColor: Colors.black,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
         children: [
-          Text(
-            "Login",
-            style: TextStyle(
-              color: Colors.green,
-              fontSize: 35,
-              fontFamily: "dot",
+          SizedBox.expand(
+            child: Image.asset("assets/backgroundpurple.png", fit: BoxFit.cover
             ),
           ),
-          SizedBox(height: 25),
-          Padding(
-            padding: const EdgeInsets.only(top: 10,bottom: 10,left: 40,right: 40),
-            child: Container(
-              width: double.maxFinite,
-              height: 75,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(color: Colors.green),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Login",
+                style: TextStyle(
+                  color: Colors.deepPurpleAccent,
+                  fontSize: 35,
+                  fontFamily: "dot",
+                ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: Center(
-                  child: TextFormField(
-                    controller: emailController,
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Email Id",
-                      hintStyle: TextStyle(color: Colors.green[200]),
+              SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(top: 10,bottom: 10,left: 40,right: 40),
+                child: Container(
+                  width: double.maxFinite,
+                  height: 75,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    border: Border.all(color: Colors.deepPurple),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 25),
+                    child: Center(
+                      child: TextFormField(
+                        controller: emailController,
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Email Id",
+                          hintStyle: TextStyle(color: Colors.deepPurple[200]),
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ),
-          SizedBox(height: 25),
-          Padding(
-            padding: const EdgeInsets.only(top: 10,bottom: 10,left: 40,right: 40),
-            child: Container(
-              width: double.maxFinite,
-              height: 75,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(color: Colors.green),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: Center(
-                  child: TextFormField(
-                    controller: passController,
-                    obscureText: true,
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Password",
-                      hintStyle: TextStyle(color: Colors.green[200]),
+              SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(top: 10,bottom: 10,left: 40,right: 40),
+                child: Container(
+                  width: double.maxFinite,
+                  height: 75,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    border: Border.all(color: Colors.deepPurple),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 25),
+                    child: Center(
+                        child: TextFormField(
+                          controller: passController,
+                          obscureText: true,
+                          style: TextStyle(color: Colors.white),
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Password",
+                            hintStyle: TextStyle(color: Colors.deepPurple[200]),
+                          ),
+                        )
                     ),
-                  )
+                  ),
                 ),
               ),
-            ),
-          ),
-          SizedBox(height: 75),
-          Padding(
-            padding: const EdgeInsets.only(right: 60, left: 60),
-            child: GestureDetector(
-              onTap: () {
-                login();
+              SizedBox(height: 75),
+              Padding(
+                padding: const EdgeInsets.only(right: 60, left: 60),
+                child: GestureDetector(
+                  onTap: () {
+                    login();
 
-              },
-              child: Container(
-                width: double.maxFinite,
-                height: 65,
-                decoration: BoxDecoration(boxShadow: [
-                  BoxShadow(
-                    color: Colors.green.withOpacity(0.5), // deeper shadow
-                    offset: const Offset(0, 6), // move down for depth
-                    blurRadius: 15, // smooth blur
-                    spreadRadius: 1, // soft spread
-                  ),
-                ],
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: Center(
-                   child: isLoading
-                    ? CircularProgressIndicator(color: Colors.white)
-                    : Text("Login",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22,
-                      fontFamily: "dot",
+                  },
+                  child: Container(
+                    width: double.maxFinite,
+                    height: 65,
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                        color: Colors.deepPurple.withOpacity(0.5), // deeper shadow
+                        offset: const Offset(0, 6), // move down for depth
+                        blurRadius: 15, // smooth blur
+                        spreadRadius: 1, // soft spread
+                      ),
+                    ],
+                      color: Colors.deepPurple,
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: Center(
+                      child: isLoading
+                          ? CircularProgressIndicator(color: Colors.white)
+                          : Text("Login",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                          fontFamily: "dot",
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
+            ],
           ),
         ],
-      ),
+      )
     );
   }
 }

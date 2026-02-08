@@ -44,6 +44,8 @@ dependencies:
   firebase_auth: any
   cloud_firestore: any
   lottie: any
+  just_audio: any
+  html_unescape: any
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +74,7 @@ flutter:
   - assets/
   - assets/audio/chittiintro.mp3
   - assets/audio/cornhub.mp3
+  - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

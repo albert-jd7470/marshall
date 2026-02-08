@@ -6,7 +6,9 @@ import 'api_endpoints.dart';
 class TrendingService {
   static Future<List<AlbumElement>> fetchTrendingForLanguage(String language) async {
     try {
-      final url = Uri.parse('${ApiEndpoints.GetTrendinglanguages}$language');
+      final url = Uri.parse(
+        '${ApiEndpoints.GetTrendinglanguages}${language.toLowerCase()}',
+      );
       final response = await http.get(url);
 
       if (response.statusCode == 200) {

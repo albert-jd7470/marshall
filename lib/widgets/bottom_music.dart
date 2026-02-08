@@ -118,16 +118,22 @@ class _BottomMusicBarState extends State<BottomMusicBar> {
         }
       },
       child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
+        borderRadius: BorderRadius.circular(20),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
           child: Container(
-            height: 70,
+            height: 80,
             padding: const EdgeInsets.symmetric(horizontal: 15),
-            color: Colors.white.withOpacity(0.08),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: Colors.deepPurple,
+                width: 1,
+              ),
+
+              // ✅ Glass color
+              color: Colors.deepPurple.withOpacity(0.12),
+            ),
             child: Row(
               children: [
                 ClipRRect(
@@ -158,7 +164,7 @@ class _BottomMusicBarState extends State<BottomMusicBar> {
                             ? 0
                             : _position.inMilliseconds / _duration.inMilliseconds,
                         backgroundColor: Colors.white,
-                        color: Colors.black,
+                        color: Colors.deepPurpleAccent,
                         minHeight: 3,
                       ),
                     ],
@@ -168,13 +174,13 @@ class _BottomMusicBarState extends State<BottomMusicBar> {
                   onPressed: playPause,
                   icon: Icon(
                     isPlaying ? Icons.pause : Icons.play_arrow,
-                    color: Colors.white,
+                    color: Colors.deepPurpleAccent,
                     size: 28,
                   ),
                 ),
                 IconButton(
                   onPressed: stop,
-                  icon: const Icon(Icons.close, color: Colors.white),
+                  icon: const Icon(Icons.close, color: Colors.deepPurpleAccent),
                 ),
               ],
             ),

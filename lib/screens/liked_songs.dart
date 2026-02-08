@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'bottomnavigations.dart';
+import '../widgets/bottomnavigations.dart';
 
 class LikedSongs extends StatefulWidget {
   const LikedSongs({super.key});
@@ -36,7 +36,7 @@ class _LikedSongsState extends State<LikedSongs> {
       body: Stack(
         children: [
           SizedBox.expand(
-            child: Image.asset("assets/backgroundWhite.png", fit: BoxFit.fill),
+            child: Image.asset("assets/backgroundpurple.png", fit: BoxFit.fill),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 150, left: 20, right: 20),

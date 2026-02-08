@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:marshall/screens/liked_songs.dart';
 
-import 'bottomnavigations.dart';
+import '../widgets/bottomnavigations.dart';
 
 class Library extends StatefulWidget {
   const Library({super.key});
@@ -22,13 +22,13 @@ class _LibraryState extends State<Library> {
             Text(
               "Library",
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 25,
                 fontFamily: "dot",
               ),
             ),
             SizedBox(width: 20,),
-            Image(image: AssetImage("assets/library.png",),color: Colors.black54,)
+            Image(image: AssetImage("assets/library.png",),color: Colors.white,)
           ],
         ),
         backgroundColor: Colors.transparent,
@@ -41,7 +41,7 @@ class _LibraryState extends State<Library> {
               height: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: Colors.black,
+                color: Colors.deepPurpleAccent,
                 border: Border.all(color: Colors.white)
               ),
               child: Center(
@@ -58,9 +58,8 @@ class _LibraryState extends State<Library> {
       body: Stack(
         children: [
           SizedBox.expand(
-            child: Image.asset("assets/backgroundWhite.png", fit: BoxFit.fill),
+            child: Image.asset("assets/backgroundpurple.png", fit: BoxFit.fill),
           ),
-          //-------BodyHead-------------
           Padding(
             padding: const EdgeInsets.only(top: 150,left: 20,right: 20),
             child: Column(
@@ -69,7 +68,7 @@ class _LibraryState extends State<Library> {
                   children: [
 
                     GestureDetector(onTap:(){
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) =>  LikedSongs(),

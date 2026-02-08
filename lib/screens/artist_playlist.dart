@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:marshall/screens/bottomnavigations.dart';
+import 'package:marshall/widgets/bottomnavigations.dart';
 
 class ArtistPlaylist extends StatefulWidget {
-  const ArtistPlaylist({super.key});
+  final dynamic artistId;
+  final String artistName;
+  const ArtistPlaylist({super.key, this.artistId, required this.artistName});
 
   @override
   State<ArtistPlaylist> createState() => _ArtistPlaylistState();

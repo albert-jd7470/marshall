@@ -26,7 +26,7 @@ class _RegisterState extends State<Register> {
           content: Text("Please fill all required fields!",style: TextStyle(
             fontFamily: "dot",
           ),),
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.deepPurple,
           duration: Duration(seconds: 2),
         ),
       );
@@ -78,7 +78,7 @@ class _RegisterState extends State<Register> {
           content: Text(message,style: TextStyle(
             fontFamily: "dot",
           ),),
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.deepPurple,
           duration: const Duration(seconds: 2),
         ),
       );
@@ -89,7 +89,7 @@ class _RegisterState extends State<Register> {
             fontFamily: "dot",
             color: Colors.white
           ),),
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.deepPurple,
           duration: const Duration(seconds: 2),
         ),
       );
@@ -98,149 +98,159 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        extendBodyBehindAppBar: true,
+
+        backgroundColor: Colors.transparent,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        leading: IconButton(
+        backgroundColor: Colors.transparent,
+        elevation: 0,        leading: IconButton(
           onPressed: () {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => SignUi()),
             );
           },
-          icon: Icon(Icons.arrow_back_ios, color: Colors.green),
+          icon: Icon(Icons.arrow_back_ios, color: Colors.deepPurple),
         ),
       ),
-      backgroundColor: Colors.black,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
         children: [
-          Text(
-            "Register",
-            style: TextStyle(
-              color: Colors.green,
-              fontSize: 50,
-              fontFamily: "dot",
+          SizedBox.expand(
+            child: Image.asset("assets/backgroundpurple.png", fit: BoxFit.cover
             ),
           ),
-          SizedBox(height: 25),
-          Padding(
-            padding: const EdgeInsets.only(top: 10,bottom: 10,left: 40,right: 40),
-            child: Container(
-              width: double.maxFinite,
-              height: 75,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(color: Colors.green),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Register",
+                style: TextStyle(
+                  color: Colors.deepPurple,
+                  fontSize: 50,
+                  fontFamily: "dot",
+                ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: Center(
-                  child: TextFormField(
-                    controller: username,
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Username",
-                      hintStyle: TextStyle(color: Colors.grey),
+              SizedBox(height: 25),
+              Padding(
+                padding: const EdgeInsets.only(top: 10,bottom: 10,left: 40,right: 40),
+                child: Container(
+                  width: double.maxFinite,
+                  height: 75,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    border: Border.all(color: Colors.deepPurple),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 25),
+                    child: Center(
+                      child: TextFormField(
+                        controller: username,
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Username",
+                          hintStyle: TextStyle(color: Colors.grey),
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10,bottom: 10,left: 40,right: 40),
-            child: Container(
-              width: double.maxFinite,
-              height: 75,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(color: Colors.green),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: Center(
-                  child: TextFormField(
-                    controller: emailId,
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Email Id",
-                      hintStyle: TextStyle(color: Colors.grey),
+              Padding(
+                padding: const EdgeInsets.only(top: 10,bottom: 10,left: 40,right: 40),
+                child: Container(
+                  width: double.maxFinite,
+                  height: 75,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    border: Border.all(color: Colors.deepPurple),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 25),
+                    child: Center(
+                      child: TextFormField(
+                        controller: emailId,
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Email Id",
+                          hintStyle: TextStyle(color: Colors.grey),
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10,bottom: 10,left: 40,right: 40),
-            child: Container(
-              width: double.maxFinite,
-              height: 75,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(color: Colors.green),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 25),
-                child: Center(
-                  child: TextFormField(
-                    obscureText: true,
-                    controller: password,
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Password",
-                      hintStyle: TextStyle(color: Colors.grey),
+              Padding(
+                padding: const EdgeInsets.only(top: 10,bottom: 10,left: 40,right: 40),
+                child: Container(
+                  width: double.maxFinite,
+                  height: 75,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    border: Border.all(color: Colors.deepPurple),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 25),
+                    child: Center(
+                      child: TextFormField(
+                        obscureText: true,
+                        controller: password,
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Password",
+                          hintStyle: TextStyle(color: Colors.grey),
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ),
-          SizedBox(height: 100),
-          Padding(
-            padding: const EdgeInsets.only(right: 60, left: 60),
-            child: GestureDetector(
-              onTap: () {
-                register();
-                // Navigator.pushReplacement(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => LanguagesScreen()),
-                // );
-              },
-              child: Container(
-                width: double.maxFinite,
-                height: 65,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.green.withOpacity(0.5), // deeper shadow
-                      offset: const Offset(0, 6), // move down for depth
-                      blurRadius: 15, // smooth blur
-                      spreadRadius: 1, // soft spread
+              SizedBox(height: 100),
+              Padding(
+                padding: const EdgeInsets.only(right: 60, left: 60),
+                child: GestureDetector(
+                  onTap: () {
+                    register();
+                    // Navigator.pushReplacement(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => LanguagesScreen()),
+                    // );
+                  },
+                  child: Container(
+                    width: double.maxFinite,
+                    height: 65,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.deepPurple.withOpacity(0.5), // deeper shadow
+                          offset: const Offset(0, 6), // move down for depth
+                          blurRadius: 15, // smooth blur
+                          spreadRadius: 1, // soft spread
+                        ),
+                      ],
+                      color: Colors.deepPurple,
+                      borderRadius: BorderRadius.circular(25),
                     ),
-                  ],
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: Center(
-                  child: Text(
-                    "Sign Up ",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      fontFamily: "dot",
+                    child: Center(
+                      child: Text(
+                        "Sign Up ",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          fontFamily: "dot",
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
+            ],
           ),
         ],
-      ),
+      )
     );
   }
 }

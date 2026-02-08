@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:marshall/screens/login.dart';
 
 
-import 'bottomnavigations.dart';
+import '../widgets/bottomnavigations.dart';
 
 class LanguagesScreen extends StatefulWidget {
   const LanguagesScreen({super.key});

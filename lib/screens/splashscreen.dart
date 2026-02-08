@@ -1,8 +1,8 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:marshall/screens/bottomnavigations.dart';
-import 'package:marshall/screens/onboard.dart';
+import 'package:marshall/widgets/bottomnavigations.dart';
+import 'package:marshall/screens/homepage.dart';
 import 'package:marshall/screens/sign_ui.dart';
 
 class Splashscreen extends StatefulWidget {
@@ -86,15 +86,15 @@ class _SplashscreenState extends State<Splashscreen>
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SizedBox(
-                      width: 200,
-                      height: 200,
-                      child:Lottie.asset("assets/Music.json")
+                      width: 350,
+                      height: 350,
+                      child:Image(image: AssetImage("assets/icons/musiumicon.png"))
                     ),
                     const SizedBox(height: 25),
                     const Text(
-                      "HankTune",
+                      "Musium",
                       style: TextStyle(
-                        color: Colors.green,
+                        color: Colors.deepPurpleAccent,
                         fontSize: 35,
                         fontFamily: "dot",
                       ),

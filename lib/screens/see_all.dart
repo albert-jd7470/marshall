@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marshall/screens/bottomnavigations.dart';
+import 'package:marshall/widgets/bottomnavigations.dart';
 
 class SeeAll extends StatefulWidget {
   const SeeAll({super.key});

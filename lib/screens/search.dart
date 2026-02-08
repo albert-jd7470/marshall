@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -18,11 +20,28 @@ class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController searchController = TextEditingController();
   List<Result> _results = [];
   bool _isLoading = false;
+  Timer? _debounce;
+  bool _hasTyped = false;
+  final FocusNode _searchFocus = FocusNode();
+
+
+
 
   Future<void> performSearch(String query) async {
-    if (query.isEmpty) return;
+    query = query.trim();
 
+    if (query.isEmpty) {
+      setState(() {
+        _results = [];
+        _isLoading = false;
+        _hasTyped = false;
+      });
+      return;
+    }
+
+    _hasTyped = true;
     setState(() => _isLoading = true);
+
 
     try {
       final url = Uri.parse('${ApiEndpoints.SearchEndpoint}${Uri.encodeComponent(query)}');
@@ -56,6 +75,7 @@ class _SearchScreenState extends State<SearchScreen> {
     searchController.dispose();
     super.dispose();
   }
+   Color violet= Color(0xFF5628F8);
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +85,7 @@ class _SearchScreenState extends State<SearchScreen> {
         title: const Text(
           "Search",
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 25,
             fontFamily: "dot",
           ),
@@ -77,7 +97,7 @@ class _SearchScreenState extends State<SearchScreen> {
         children: [
           SizedBox.expand(
             child: Image.asset(
-              "assets/backgroundWhite.png",
+              "assets/backgroundpurple.png",
               fit: BoxFit.fill,
             ),
           ),
@@ -100,13 +120,14 @@ class _SearchScreenState extends State<SearchScreen> {
                         const SizedBox(width: 10),
                         const Padding(
                           padding: EdgeInsets.all(8.0),
-                          child: Text("|", style: TextStyle(color: Colors.green, fontSize: 25)),
+                          child: Text("|", style: TextStyle(color: Colors.purple, fontSize: 25)),
                         ),
                         Expanded(
                           child: Padding(
                             padding: const EdgeInsets.only(right: 8.0),
                             child: TextFormField(
                               controller: searchController,
+                              focusNode: _searchFocus,
                               style: const TextStyle(
                                 color: Colors.black,
                                 fontFamily: "semi",
@@ -116,14 +137,19 @@ class _SearchScreenState extends State<SearchScreen> {
                                 hintText: "Artist or Song",
                                 hintStyle: TextStyle(color: Colors.grey),
                               ),
-                              onFieldSubmitted: (query) {
-                                performSearch(query);
+                              onChanged: (query) {
+                                if (_debounce?.isActive ?? false) _debounce!.cancel();
+
+                                _debounce = Timer(const Duration(milliseconds: 400), () {
+                                  performSearch(query);
+                                });
                               },
+
                             ),
                           ),
                         ),
                         IconButton(
-                          icon: const Icon(Icons.search, color: Colors.green),
+                          icon: const Icon(Icons.search, color: Colors.purple),
                           onPressed: () {
                             performSearch(searchController.text);
                           },
@@ -151,7 +177,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       return ListTile(
                         leading: song.image.isNotEmpty
                             ? Image.network(
-                          song.image[0].link,
+                          song.image[1].link,
                           width: 50,
                           height: 50,
                           fit: BoxFit.cover,

@@ -5,9 +5,10 @@ import '../models/search_models.dart';
 import '../models/trending_models.dart'; // ✅ Added for AlbumElement
 import '../screens/liked_songs.dart';
 import '../services/audio_services.dart';
+import 'package:html_unescape/html_unescape.dart';
 
 class SongScreen extends StatefulWidget {
-  final dynamic song; // ✅ Works for Result or AlbumElement
+  final dynamic song;
 
   const SongScreen({super.key, required this.song});
 
@@ -16,6 +17,9 @@ class SongScreen extends StatefulWidget {
 }
 
 class _SongScreenState extends State<SongScreen> {
+  final HtmlUnescape _htmlUnescape = HtmlUnescape();
+
+  final Color purple = Color(0xFF5628F8);
   final AudioPlayer player = AudioService.player;
 
   Duration _position = Duration.zero;
@@ -23,6 +27,21 @@ class _SongScreenState extends State<SongScreen> {
 
   bool get isPlaying => AudioService.isPlaying;
   bool get isRepeat => AudioService.isRepeat;
+
+  String cleanText(String text) {
+    return _htmlUnescape.convert(text).replaceAll('"', '').trim();
+  }
+
+  bool showLyrics = false;
+
+  void toggleLyrics() {
+    setState(() {
+      showLyrics = !showLyrics;
+    });
+
+    print(showLyrics ? "onLyrics" : "offLyrics");
+  }
+
 
   @override
   void initState() {
@@ -80,11 +99,10 @@ class _SongScreenState extends State<SongScreen> {
   void liked() {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text(
-          "Added To Liked",
-          style: TextStyle(fontFamily: "dot"),
+        content: Center(
+          child: Text("Added To Liked", style: TextStyle(fontFamily: "dot")),
         ),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blueAccent,
       ),
     );
     Navigator.pushReplacement(
@@ -129,7 +147,8 @@ class _SongScreenState extends State<SongScreen> {
   Widget build(BuildContext context) {
     final song = widget.song;
     final image = getImage(song);
-    final name = getSongName(song);
+    final rawName = getSongName(song);
+    final name = cleanText(rawName);
     final artist = getArtist(song);
 
     double progress = (_duration.inMilliseconds == 0)
@@ -153,7 +172,7 @@ class _SongScreenState extends State<SongScreen> {
         title: Column(
           children: [
             const Text(
-              "PLAYING FROM YOUR LIBRARY",
+              "PLAYING FROM YOUR SEARCH",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 10,
@@ -162,30 +181,30 @@ class _SongScreenState extends State<SongScreen> {
             ),
             name.length > 20
                 ? SizedBox(
-              height: 20,
-              child: Marquee(
-                text: name,
-                style: const TextStyle(
-                  color: Colors.black54,
-                  fontSize: 15,
-                  fontFamily: "semi",
-                ),
-                scrollAxis: Axis.horizontal,
-                blankSpace: 50,
-                velocity: 20,
-                startPadding: 10,
-                pauseAfterRound: Duration(seconds: 1),
-              ),
-            )
+                    height: 20,
+                    child: Marquee(
+                      text: name,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontFamily: "semi",
+                      ),
+                      scrollAxis: Axis.horizontal,
+                      blankSpace: 50,
+                      velocity: 20,
+                      startPadding: 10,
+                      pauseAfterRound: Duration(seconds: 1),
+                    ),
+                  )
                 : Text(
-              name,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                fontFamily: "semi",
-              ),
-            ),
+                    name,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "semi",
+                    ),
+                  ),
           ],
         ),
         centerTitle: true,
@@ -199,7 +218,10 @@ class _SongScreenState extends State<SongScreen> {
       body: Stack(
         children: [
           SizedBox.expand(
-            child: Image.asset("assets/backgroundWhite.png", fit: BoxFit.fill),
+            child: Image.asset(
+              "assets/backgroundpurple.png",
+              fit: BoxFit.cover,
+            ),
           ),
           Center(
             child: Padding(
@@ -207,7 +229,6 @@ class _SongScreenState extends State<SongScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    // ✅ Safe image
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Container(
@@ -218,14 +239,17 @@ class _SongScreenState extends State<SongScreen> {
                           borderRadius: BorderRadius.circular(25),
                           image: image.isNotEmpty
                               ? DecorationImage(
-                            image: NetworkImage(image),
-                            fit: BoxFit.cover,
-                          )
+                                  image: NetworkImage(image),
+                                  fit: BoxFit.cover,
+                                )
                               : null,
                         ),
                         child: image.isEmpty
-                            ? const Icon(Icons.music_note,
-                            color: Colors.white54, size: 80)
+                            ? const Icon(
+                                Icons.music_note,
+                                color: Colors.white54,
+                                size: 80,
+                              )
                             : null,
                       ),
                     ),
@@ -238,55 +262,56 @@ class _SongScreenState extends State<SongScreen> {
                         children: [
                           name.length > 20
                               ? SizedBox(
-                            height: 25,
-                            child: Marquee(
-                              text: name,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontFamily: "semi",
-                              ),
-                              scrollAxis: Axis.horizontal,
-                              blankSpace: 50,
-                              velocity: 20,
-                              startPadding: 10,
-                              pauseAfterRound: Duration(seconds: 1),
-                            ),
-                          )
+                                  height: 20,
+                                  child: Marquee(
+                                    text: name,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontFamily: "semi",
+                                    ),
+                                    scrollAxis: Axis.horizontal,
+                                    blankSpace: 50,
+                                    velocity: 20,
+                                    startPadding: 10,
+                                    pauseAfterRound: Duration(seconds: 1),
+                                  ),
+                                )
                               : Text(
-                            name,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontFamily: "semi",
-                            ),
-                          ),
+                                  name,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: "semi",
+                                  ),
+                                ),
                           const SizedBox(height: 5),
                           artist.length > 20
                               ? SizedBox(
-                            height: 20,
-                            child: Marquee(
-                              text: artist,
-                              style: const TextStyle(
-                                color: Colors.white54,
-                                fontSize: 14,
-                                fontFamily: "semi",
-                              ),
-                              scrollAxis: Axis.horizontal,
-                              blankSpace: 50,
-                              velocity: 15,
-                              startPadding: 10,
-                              pauseAfterRound: Duration(seconds: 1),
-                            ),
-                          )
+                                  height: 20,
+                                  child: Marquee(
+                                    text: artist,
+                                    style: const TextStyle(
+                                      color: Colors.white54,
+                                      fontSize: 14,
+                                      fontFamily: "semi",
+                                    ),
+                                    scrollAxis: Axis.horizontal,
+                                    blankSpace: 50,
+                                    velocity: 15,
+                                    startPadding: 10,
+                                    pauseAfterRound: Duration(seconds: 1),
+                                  ),
+                                )
                               : Text(
-                            artist,
-                            style: const TextStyle(
-                              color: Colors.white54,
-                              fontSize: 14,
-                              fontFamily: "semi",
-                            ),
-                          ),
+                                  artist,
+                                  style: const TextStyle(
+                                    color: Colors.white54,
+                                    fontSize: 14,
+                                    fontFamily: "semi",
+                                  ),
+                                ),
                         ],
                       ),
                     ),
@@ -300,14 +325,18 @@ class _SongScreenState extends State<SongScreen> {
                           return GestureDetector(
                             onHorizontalDragUpdate: (details) {
                               double localDx = details.localPosition.dx;
-                              double progressValue =
-                              (localDx / barWidth).clamp(0.0, 1.0);
+                              double progressValue = (localDx / barWidth).clamp(
+                                0.0,
+                                1.0,
+                              );
                               seekTo(progressValue);
                             },
                             onTapDown: (details) {
                               double localDx = details.localPosition.dx;
-                              double progressValue =
-                              (localDx / barWidth).clamp(0.0, 1.0);
+                              double progressValue = (localDx / barWidth).clamp(
+                                0.0,
+                                1.0,
+                              );
                               seekTo(progressValue);
                             },
                             child: SizedBox(
@@ -326,7 +355,7 @@ class _SongScreenState extends State<SongScreen> {
                                     width: barWidth * progress,
                                     height: 5,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
+                                      color: Colors.deepPurpleAccent,
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                   ),
@@ -337,10 +366,12 @@ class _SongScreenState extends State<SongScreen> {
                                       width: 14,
                                       height: 14,
                                       decoration: BoxDecoration(
-                                        color: Colors.black,
+                                        color: Colors.deepPurpleAccent,
                                         shape: BoxShape.circle,
                                         border: Border.all(
-                                            color: Colors.white, width: 2),
+                                          color: Colors.white,
+                                          width: 2,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -354,7 +385,9 @@ class _SongScreenState extends State<SongScreen> {
                     // Time
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 5),
+                        horizontal: 20,
+                        vertical: 5,
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -380,7 +413,7 @@ class _SongScreenState extends State<SongScreen> {
                             onTap: toggleRepeat,
                             child: Image.asset(
                               "assets/Repeat.png",
-                              color: isRepeat ? Colors.white : Colors.white60,
+                              color: isRepeat ? purple : Colors.white,
                             ),
                           ),
                           Row(
@@ -397,6 +430,7 @@ class _SongScreenState extends State<SongScreen> {
                                       ? Icons.pause_circle
                                       : Icons.play_circle,
                                   color: Colors.white,
+
                                   size: 80,
                                 ),
                               ),
@@ -416,6 +450,59 @@ class _SongScreenState extends State<SongScreen> {
                           ),
                         ],
                       ),
+                    ),
+                    SizedBox(height: 30),
+                    GestureDetector(
+                      onTap: toggleLyrics,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Lyrics",
+                            style: TextStyle(
+                              color: showLyrics ? purple : Colors.white,
+                              fontSize: 15,
+                              fontFamily: "semi",
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          Icon(
+                            showLyrics ? Icons.keyboard_arrow_down : Icons.keyboard_arrow_up,
+                            color: showLyrics ? Colors.white : Colors.deepPurpleAccent,
+                            size: 18,
+                          ),
+                        ],
+                      ),
+                    ),
+
+
+                    SizedBox(height: 50),
+
+                    AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 300),
+                      child: showLyrics
+                          ? Padding(
+                        key: const ValueKey("lyrics"),
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: double.maxFinite,
+                          height: 500,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF5628F8).withOpacity(0.5),
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25),
+                            ),
+                          ),
+                          child:  Center(
+                            child: Text(
+                              "Lyrics will appear here",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      )
+                          : const SizedBox.shrink(),
                     ),
                   ],
                 ),
